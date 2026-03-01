@@ -18,25 +18,14 @@ int main() {
         scanf("%s %d %d", p[i].pid, &p[i].arrival, &p[i].burst);
     }
 
-    // sort by arrival
-    for(int i = 0; i < n - 1; i++) {
-        for(int j = i + 1; j < n; j++) {
-            if(p[i].arrival > p[j].arrival) {
-                Process temp = p[i];
-                p[i] = p[j];
-                p[j] = temp;
-            }
-        }
-    }
-
-    int current_time = 0;
+    int time = 0;
 
     for(int i = 0; i < n; i++) {
-        if(current_time < p[i].arrival)
-            current_time = p[i].arrival;
+        if(time < p[i].arrival)
+            time = p[i].arrival;
 
-        p[i].waiting = current_time - p[i].arrival;
-        current_time += p[i].burst;
+        p[i].waiting = time - p[i].arrival;
+        time += p[i].burst;
         p[i].turnaround = p[i].waiting + p[i].burst;
     }
 
