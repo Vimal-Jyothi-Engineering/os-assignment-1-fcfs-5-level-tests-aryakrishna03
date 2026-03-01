@@ -6,6 +6,7 @@ typedef struct {
     int burst;
     int waiting;
     int turnaround;
+    int index;   // to preserve input order
 } Process;
 
 int main() {
@@ -16,6 +17,20 @@ int main() {
 
     for(int i = 0; i < n; i++) {
         scanf("%s %d %d", p[i].pid, &p[i].arrival, &p[i].burst);
+        p[i].index = i;
+    }
+
+    // Sort by arrival time
+    // If arrival same -> keep original order
+    for(int i = 0; i < n-1; i++) {
+        for(int j = i+1; j < n; j++) {
+            if(p[i].arrival > p[j].arrival ||
+              (p[i].arrival == p[j].arrival && p[i].index > p[j].index)) {
+                Process temp = p[i];
+                p[i] = p[j];
+                p[j] = temp;
+            }
+        }
     }
 
     int time = 0;
