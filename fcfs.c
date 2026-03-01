@@ -11,17 +11,14 @@ typedef struct {
 
 int main() {
     int n;
+    printf("Enter number of processes: ");
     scanf("%d", &n);
 
     Process p[n];
 
-    for (int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++) {
         scanf("%s %d %d", p[i].pid, &p[i].arrival, &p[i].burst);
     }
-
-    // TODO: Sort by arrival time
-    // TODO: Compute waiting & turnaround time
-    // TODO: Print EXACTLY in required format
 
     return 0;
 }
