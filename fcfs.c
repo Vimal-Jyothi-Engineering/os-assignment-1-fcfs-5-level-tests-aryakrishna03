@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 typedef struct {
     char pid[10];
@@ -13,7 +12,7 @@ int main() {
     int n;
     scanf("%d", &n);
 
-    Process p[n];
+    Process p[100];
 
     for(int i = 0; i < n; i++) {
         scanf("%s %d %d", p[i].pid, &p[i].arrival, &p[i].burst);
